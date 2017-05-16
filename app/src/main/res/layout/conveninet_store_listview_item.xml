@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Main_Item_Body"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/convenient_store_icon"
+            android:layout_width="120dip"
+            android:layout_height="80dp"
+            android:paddingLeft="20dp"
+            android:src="@mipmap/ic_launcher" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/convenient_store"
+        android:layout_width="0dip"
+        android:layout_height="80dp"
+        android:layout_weight="5"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/convenient_store_text"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="bottom"
+            android:paddingLeft="20dp"
+            android:text="convenient_store_text"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/convenient_store_detail"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="top"
+            android:paddingLeft="20dp"
+            android:paddingTop="5dp"
+            android:text="convenient_store_detail"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="80dp"
+        android:layout_weight="2">
+
+
+        <ImageView
+            android:id="@+id/cCalling"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:clickable="true"
+            android:src="@drawable/call_button" />
+
+    </LinearLayout>
+   <!-- android:clickable="true"
+    android:focusable="true"
+-->
+
+    <TextView
+        android:id="@+id/convenient_store_id"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/convenient_store_url"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/convenient_store_pnumber"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:visibility="invisible" />
+
+
+</LinearLayout>
