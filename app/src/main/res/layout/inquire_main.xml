@@ -59,7 +59,7 @@
             android:background="@drawable/border"
             android:paddingLeft="10dp"/>
         <Button
-            android:id="@+id/requestSend"
+            android:id="@+id/button_requestSend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

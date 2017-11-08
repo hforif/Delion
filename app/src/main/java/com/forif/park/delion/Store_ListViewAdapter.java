@@ -48,12 +48,12 @@ public class Store_ListViewAdapter extends BaseAdapter {
         if (v == null) {
             holder = new Store_ViewHolder();
             v = ((LayoutInflater) sContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.store_listview_item, null);
-            holder.sIcon = (ImageView) v.findViewById(R.id.Store_Label_Icon);
-            holder.sName = (TextView) v.findViewById(R.id.Store_Name_Text);
-            holder.sDetail = (TextView) v.findViewById(R.id.Store_Name_Detail);
-            holder.sCalling = (ImageView) v.findViewById(R.id.sCalling);
-            holder.sId = (TextView) v.findViewById(R.id.Store_Id);
-            holder.sPnumber = (TextView) v.findViewById(R.id.Store_Pnumber);
+            holder.sIcon = (ImageView) v.findViewById(R.id.image_Store_Label_Icon);
+            holder.sName = (TextView) v.findViewById(R.id.text_Store_Name);
+            holder.sDetail = (TextView) v.findViewById(R.id.text_Store_Name_Detail);
+            holder.sCalling = (ImageView) v.findViewById(R.id.image_sCalling);
+            holder.sId = (TextView) v.findViewById(R.id.text_Store_Id);
+            holder.sPnumber = (TextView) v.findViewById(R.id.text_Store_Pnumber);
             v.setTag(holder);
         } else {
             holder = (Store_ViewHolder) v.getTag();
@@ -73,7 +73,7 @@ public class Store_ListViewAdapter extends BaseAdapter {
         holder.sPnumber.setText(sListCheck.getmPnumber());
 
 
-        final TextView finalV = (TextView) v.findViewById(R.id.Store_Pnumber);
+        final TextView finalV = (TextView) v.findViewById(R.id.text_Store_Pnumber);
 
         holder.sCalling.setOnClickListener(new View.OnClickListener() {
             @Override

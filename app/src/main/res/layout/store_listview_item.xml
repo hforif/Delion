@@ -11,7 +11,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/Store_Label_Icon"
+            android:id="@+id/image_Store_Label_Icon"
             android:layout_width="120dip"
             android:layout_height="80dp"
             android:paddingLeft="20dp"
@@ -28,7 +28,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/Store_Name_Text"
+            android:id="@+id/text_Store_Name"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:gravity="bottom"
@@ -39,7 +39,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/Store_Name_Detail"
+            android:id="@+id/text_Store_Name_Detail"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:gravity="top"
@@ -58,7 +58,7 @@
 
 
         <ImageView
-            android:id="@+id/sCalling"
+            android:id="@+id/image_sCalling"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="5dp"
@@ -72,13 +72,13 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/Store_Id"
+        android:id="@+id/text_Store_Id"
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:visibility="invisible" />
 
     <TextView
-        android:id="@+id/Store_Pnumber"
+        android:id="@+id/text_Store_Pnumber"
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:visibility="invisible" />

@@ -29,7 +29,7 @@ public class Inquire_Main extends AppCompatActivity {
         //여기는 재석코드
         request_title = (EditText) findViewById(R.id.requestTitle);
         request_contents= (EditText) findViewById(R.id.requestContents);
-        request_send = (Button) findViewById(R.id.requestSend);
+        request_send = (Button) findViewById(R.id.button_requestSend);
         request_send.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 String req_title = request_title.getText().toString();

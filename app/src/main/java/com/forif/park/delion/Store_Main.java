@@ -539,7 +539,7 @@ public class Store_Main extends ActionBarActivity {
         @Override
         public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
 
-            TextView listText = (TextView) view.findViewById(R.id.Store_Id);
+            TextView listText = (TextView) view.findViewById(R.id.text_Store_Id);
             String text = listText.getText().toString();
 //            Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(Store_Main.this, Menu_Main.class);

@@ -214,7 +214,7 @@ public class Menu_Main extends AppCompatActivity {
             }
         });*/
 
-        ImageView PhoneCall = (ImageView) findViewById(R.id.dialButton);
+        ImageView PhoneCall = (ImageView) findViewById(R.id.image_dialButton);
 
         PhoneCall.setOnClickListener(new View.OnClickListener() {
             @Override

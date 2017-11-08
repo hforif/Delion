@@ -648,11 +648,11 @@ public class Search_Result extends ActionBarActivity {
         @Override
         public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
 
-            TextView listText = (TextView) view.findViewById(R.id.search_id);
+            TextView listText = (TextView) view.findViewById(R.id.text_Search_Id);
             final String text = listText.getText().toString();
-            TextView urlText = (TextView) view.findViewById(R.id.search_lau);
+            TextView urlText = (TextView) view.findViewById(R.id.text_Search_lau);
             final String url = urlText.getText().toString();
-            TextView nameText = (TextView) view.findViewById(R.id.search_text);
+            TextView nameText = (TextView) view.findViewById(R.id.text_Search_Name);
             final String name = nameText.getText().toString();
 
             if (Integer.valueOf(text) <= 32) {

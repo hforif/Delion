@@ -55,7 +55,7 @@ import java.util.HashMap;
  * Created by Park on 2015-11-22.
  */
 public class Tab_Bar_Main extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     ServerUrl Value = new ServerUrl();
     private ViewPager mViewPager;
@@ -64,8 +64,8 @@ public class Tab_Bar_Main extends AppCompatActivity
     private ListView mListView = null; //메인리스트뷰를 받을 자바상의 리스트뷰 변수 선언
     private Delivery_ListViewAdapter mAdapter = null; //메인리스트뷰의 어뎁터로 쓰일 어뎁터 변수 선언
     /////////////////
-    private final long   FINSH_INTERVAL_TIME    = 2000;
-    private long      backPressedTime        = 0;
+    private final long FINSH_INTERVAL_TIME = 2000;
+    private long backPressedTime = 0;
     /////////////////
 //    Activity act = this;
     private GridView gridView = null;
@@ -76,40 +76,38 @@ public class Tab_Bar_Main extends AppCompatActivity
     ////////////////
     private dgridadapter dAdapter = null;
     ArrayList<String> dTextArr = new ArrayList<String>();
-    HashMap<String, Bitmap>dPicArr = new HashMap<String, Bitmap>();
+    HashMap<String, Bitmap> dPicArr = new HashMap<String, Bitmap>();
     private GridView dGridView = null;
 
     @Override
     public void onBackPressed() {
-        long tempTime        = System.currentTimeMillis();
-        long intervalTime    = tempTime - backPressedTime;
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - backPressedTime;
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else if ( 0 <= intervalTime && FINSH_INTERVAL_TIME >= intervalTime ) {
+        } else if (0 <= intervalTime && FINSH_INTERVAL_TIME >= intervalTime) {
             super.onBackPressed();
-        }
-        else {
+        } else {
             backPressedTime = tempTime;
 
 
-            Toast.makeText(getApplicationContext(),"'뒤로'버튼을 한 번 더 누르면 종료.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "'뒤로'버튼을 한 번 더 누르면 종료.", Toast.LENGTH_SHORT).show();
         }
     }
+
     private static final int MY_REQUEST_PERMISSION_CODE = 2;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        switch (requestCode){
-            case MY_REQUEST_PERMISSION_CODE:{
-                if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(getApplicationContext(), "권한을 획득했습니다.",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(Tab_Bar_Main.this, "권한이 없습니다. 앱을 종료합니다.",Toast.LENGTH_LONG);
+        switch (requestCode) {
+            case MY_REQUEST_PERMISSION_CODE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getApplicationContext(), "권한을 획득했습니다.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Tab_Bar_Main.this, "권한이 없습니다. 앱을 종료합니다.", Toast.LENGTH_LONG);
                     finish();
                 }
 
@@ -128,17 +126,16 @@ public class Tab_Bar_Main extends AppCompatActivity
 
         getSupportActionBar().setTitle("홈");
 
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED
-                ||ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-                ||ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)!=PackageManager.PERMISSION_GRANTED){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                || ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)
                     || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                    ||ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CALL_PHONE)){
+                    || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CALL_PHONE)) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.CALL_PHONE}, MY_REQUEST_PERMISSION_CODE);
 
-            }
-            else{
+            } else {
                 ActivityCompat.requestPermissions(this, new String[]{
                                 Manifest.permission.ACCESS_FINE_LOCATION,
                                 Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -147,11 +144,7 @@ public class Tab_Bar_Main extends AppCompatActivity
             }
 
 
-
         }
-
-
-
 
 
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -165,7 +158,7 @@ public class Tab_Bar_Main extends AppCompatActivity
         tabLayout.setupWithViewPager(mViewPager);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -185,12 +178,10 @@ public class Tab_Bar_Main extends AppCompatActivity
 //        });
 
 
-
     }
 
 
-
-    public void SearchFunction(String message){
+    public void SearchFunction(String message) {
 
         RequestParams params = new RequestParams();
         params.put("name", message);
@@ -241,17 +232,16 @@ public class Tab_Bar_Main extends AppCompatActivity
 
                     }
 
-                    if (arrid.size() == 0){
+                    if (arrid.size() == 0) {
                         Toast.makeText(getApplicationContext(), "검색결과가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         intent.putStringArrayListExtra("id", arrid);
                         intent.putStringArrayListExtra("name", arrname);
                         intent.putStringArrayListExtra("pnum", arrpnum);
                         intent.putStringArrayListExtra("lau", arrlau);
-                        intent.putStringArrayListExtra("detail" , arrdetail);
-                        intent.putStringArrayListExtra("img" , arrimg);
-                        intent.putStringArrayListExtra("category_id" , arrpos);
+                        intent.putStringArrayListExtra("detail", arrdetail);
+                        intent.putStringArrayListExtra("img", arrimg);
+                        intent.putStringArrayListExtra("category_id", arrpos);
                         startActivity(intent);
                     }
 
@@ -267,6 +257,7 @@ public class Tab_Bar_Main extends AppCompatActivity
             }
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -276,7 +267,6 @@ public class Tab_Bar_Main extends AppCompatActivity
 
         MenuItem SearchItem = menu.findItem(R.id.action_search);
         SearchView searchview = (SearchView) MenuItemCompat.getActionView(SearchItem);
-
 
 
         searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -300,7 +290,7 @@ public class Tab_Bar_Main extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if(id == R.id.action_inquire){
+        if (id == R.id.action_inquire) {
             Intent intent = new Intent(getApplicationContext(), Inquire_Main.class);
             startActivity(intent);
         }
@@ -311,16 +301,16 @@ public class Tab_Bar_Main extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.intro_app){
+        if (id == R.id.button_intro_app) {
             Intent intent = new Intent(Tab_Bar_Main.this, More_intro_app.class);
             startActivity(intent);
-        }
-        else if(id == R.id.intro_dev){
+        } else if (id == R.id.button_intro_dev) {
             Intent intent = new Intent(Tab_Bar_Main.this, More_intro_dev.class);
             startActivity(intent);
         }
@@ -332,11 +322,11 @@ public class Tab_Bar_Main extends AppCompatActivity
     }
 
     @SuppressLint("validFragment")
-    public  class Fragment_Delivery extends Fragment{
+    public class Fragment_Delivery extends Fragment {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState){
+                                 Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.delivery_activity, container, false);
             final Activity activity = getActivity();
 
@@ -354,12 +344,12 @@ public class Tab_Bar_Main extends AppCompatActivity
 //                }
 //            });
             dAdapter = new dgridadapter(getApplicationContext());
-            dGridView = (GridView)view.findViewById(R.id.delivery_grid_view);
+            dGridView = (GridView) view.findViewById(R.id.delivery_grid_view);
             dGridView.setAdapter(dAdapter);
 
 
             String base_url = Value.url;
-            String m =  "main/basiclist/";
+            String m = "main/basiclist/";
 
             String url = base_url + m + "0";
             AsyncHttpClient client = new AsyncHttpClient();
@@ -401,13 +391,13 @@ public class Tab_Bar_Main extends AppCompatActivity
                             dTextArr.add(t1);
                         }
 
-                        dPicArr.put("8",dbm1);
-                        dPicArr.put("9",dbm2);
-                        dPicArr.put("10",dbm3);
-                        dPicArr.put("11",dbm4);
-                        dPicArr.put("12",dbm5);
-                        dPicArr.put("13",dbm6);
-                        dPicArr.put("14",dbm7);
+                        dPicArr.put("8", dbm1);
+                        dPicArr.put("9", dbm2);
+                        dPicArr.put("10", dbm3);
+                        dPicArr.put("11", dbm4);
+                        dPicArr.put("12", dbm5);
+                        dPicArr.put("13", dbm6);
+                        dPicArr.put("14", dbm7);
 
                         dAdapter.notifyDataSetChanged();
 
@@ -430,9 +420,9 @@ public class Tab_Bar_Main extends AppCompatActivity
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent intent = new Intent(getApplicationContext(), Store_Main.class);
-                    intent.putExtra("position", position +1);
+                    intent.putExtra("position", position + 1);
                     startActivity(intent);
-                    overridePendingTransition(0,0);
+                    overridePendingTransition(0, 0);
                 }
             });
 
@@ -440,12 +430,13 @@ public class Tab_Bar_Main extends AppCompatActivity
         }
 
     }
+
     @SuppressLint("validFragment")
     public class Fragment_Convenient extends Fragment {
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState){
+                                 Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.convenient_main, container, false);
             final Activity activity = getActivity();
 
@@ -454,9 +445,8 @@ public class Tab_Bar_Main extends AppCompatActivity
             gridView.setAdapter(cAdapter);
 
 
-
             String base_url = Value.url;
-            String m =  "main/basiclist/";
+            String m = "main/basiclist/";
 
             String url = base_url + m + "1";
             AsyncHttpClient client = new AsyncHttpClient();
@@ -484,10 +474,6 @@ public class Tab_Bar_Main extends AppCompatActivity
                         final Bitmap bmdf = BitmapFactory.decodeResource(getResources(), R.drawable.capb);
                         final Bitmap bm13 = BitmapFactory.decodeResource(getResources(), R.drawable.mungu_menu);
                         final Bitmap bm15 = BitmapFactory.decodeResource(getResources(), R.drawable.susun_menu);
-
-
-
-
 
 
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -563,7 +549,7 @@ public class Tab_Bar_Main extends AppCompatActivity
                     Intent intent = new Intent(getApplicationContext(), Convenient_Store_Main.class);
                     intent.putExtra("position", position + 8);
                     startActivity(intent);
-                    overridePendingTransition(0,0);
+                    overridePendingTransition(0, 0);
                 }
             });
 
@@ -576,7 +562,7 @@ public class Tab_Bar_Main extends AppCompatActivity
         LayoutInflater inflater;
         Context context = null;
 
-        public gridadapter(Context context){
+        public gridadapter(Context context) {
             super();
             this.context = context;
         }
@@ -588,7 +574,7 @@ public class Tab_Bar_Main extends AppCompatActivity
 
         @Override
         public Object getItem(int position) {
-            return picArr.get(Integer.toString(position+8));
+            return picArr.get(Integer.toString(position + 8));
         }
 
         @Override
@@ -599,15 +585,13 @@ public class Tab_Bar_Main extends AppCompatActivity
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            if(convertView == null){
+            if (convertView == null) {
                 convertView = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.convenient_grid_item, parent, false);
             }
-            ImageView imageView = (ImageView)convertView.findViewById(R.id.grid_image);
-            TextView textView = (TextView)convertView.findViewById(R.id.grid_text);
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.grid_image);
+            TextView textView = (TextView) convertView.findViewById(R.id.grid_text);
             imageView.setImageBitmap(picArr.get(Integer.toString(position + 8)));
             textView.setText(textArr.get(position));
-
-
 
 
             return convertView;
@@ -618,7 +602,7 @@ public class Tab_Bar_Main extends AppCompatActivity
         LayoutInflater inflater;
         Context context = null;
 
-        public dgridadapter(Context context){
+        public dgridadapter(Context context) {
             super();
             this.context = context;
         }
@@ -630,7 +614,7 @@ public class Tab_Bar_Main extends AppCompatActivity
 
         @Override
         public Object getItem(int position) {
-            return dPicArr.get(Integer.toString(position+8));
+            return dPicArr.get(Integer.toString(position + 8));
         }
 
         @Override
@@ -641,11 +625,11 @@ public class Tab_Bar_Main extends AppCompatActivity
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            if(convertView == null){
+            if (convertView == null) {
                 convertView = ((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.convenient_grid_item, parent, false);
             }
-            ImageView imageView = (ImageView)convertView.findViewById(R.id.grid_image);
-            TextView textView = (TextView)convertView.findViewById(R.id.grid_text);
+            ImageView imageView = (ImageView) convertView.findViewById(R.id.grid_image);
+            TextView textView = (TextView) convertView.findViewById(R.id.grid_text);
             imageView.setImageBitmap(dPicArr.get(Integer.toString(position + 8)));
             textView.setText(dTextArr.get(position));
 
@@ -663,13 +647,12 @@ public class Tab_Bar_Main extends AppCompatActivity
 
         @Override
         public Fragment getItem(int position) {
-            if(position ==0){
+            if (position == 0) {
                 return new Fragment_Delivery();
             }
-            if(position ==1){
+            if (position == 1) {
                 return new Fragment_Convenient();
-            }
-            else{
+            } else {
                 return PlaceholderFragment.newInstance(position);
             }
         }

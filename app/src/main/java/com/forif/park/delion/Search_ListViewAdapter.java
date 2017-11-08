@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.forif.park.delion.R;import java.util.ArrayList;
+import java.util.ArrayList;
 
 /**
  * Created by park on 2015-08-06.
@@ -51,13 +51,13 @@ public class Search_ListViewAdapter extends BaseAdapter {
         if(v == null){
             holder = new Search_ViewHolder();
             v= ((LayoutInflater)SearchContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.search_listview_item, null);
-            holder.SearchImage = (ImageView)v.findViewById(R.id.search_icon);
-            holder.SearchName = (TextView)v.findViewById(R.id.search_text);
-            holder.SearchDetail = (TextView)v.findViewById(R.id.search_detail);
-            holder.SearchCall = (ImageView)v.findViewById(R.id.searchCalling);
-            holder.SearchId = (TextView)v.findViewById(R.id.search_id);
-            holder.SearchPnum = (TextView)v.findViewById(R.id.search_pnum);
-            holder.SearchLau = (TextView)v.findViewById(R.id.search_lau);
+            holder.SearchImage = (ImageView)v.findViewById(R.id.image_Search_Icon);
+            holder.SearchName = (TextView)v.findViewById(R.id.text_Search_Name);
+            holder.SearchDetail = (TextView)v.findViewById(R.id.text_Search_Detail);
+            holder.SearchCall = (ImageView)v.findViewById(R.id.image_SearchCalling);
+            holder.SearchId = (TextView)v.findViewById(R.id.text_Search_Id);
+            holder.SearchPnum = (TextView)v.findViewById(R.id.text_Search_Pnum);
+            holder.SearchLau = (TextView)v.findViewById(R.id.text_Search_lau);
             v.setTag(holder);
         }else{
             holder = (Search_ViewHolder)v.getTag();
@@ -77,7 +77,7 @@ public class Search_ListViewAdapter extends BaseAdapter {
         holder.SearchPnum.setText(SearchListCheck.getSearchPnumText());
         holder.SearchLau.setText(SearchListCheck.getSearchLauText());
 
-        final TextView finalV = (TextView)v.findViewById(R.id.search_pnum);
+        final TextView finalV = (TextView)v.findViewById(R.id.text_Search_Pnum);
 
         holder.SearchCall.setOnClickListener(new View.OnClickListener() {
             @Override

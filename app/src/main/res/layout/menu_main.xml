@@ -43,7 +43,7 @@
             android:layout_height="122dp">
 
             <ImageView
-                android:id="@+id/saja"
+                android:id="@+id/image_saja"
                 android:layout_width="155dp"
                 android:layout_height="101dp"
                 android:layout_gravity="start"
@@ -153,7 +153,7 @@
         <!--android:background="#FFDEAD"-->
     </ScrollView>
         <ImageView
-            android:id="@+id/dialButton"
+            android:id="@+id/image_dialButton"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
