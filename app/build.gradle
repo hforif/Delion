@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'delion'
-            keyPassword 'appear!3'
-            storeFile file('C:/Users/wjddk/Desktop/Delion_Xamarin/delionrelease/delionrelease.keystore')
-            storePassword 'appear!3'
-        }
-    }
+//    signingConfigs {
+//        config {
+//            keyAlias 'delion'
+//            keyPassword 'appear!3'
+////            storeFile file('C:/Users/wjddk/Desktop/Delion_Xamarin/delionrelease/delionrelease.keystore')
+//            storePassword 'appear!3'
+//        }
+//    }
     compileSdkVersion 23
     buildToolsVersion '25.0.0'
     defaultConfig {
@@ -22,10 +22,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+//            signingConfig signingConfigs.config
         }
         debug {
-            signingConfig signingConfigs.config
+//            signingConfig signingConfigs.config
             jniDebuggable false
         }
     }
