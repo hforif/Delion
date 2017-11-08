@@ -57,7 +57,7 @@ import java.util.HashMap;
 public class Tab_Bar_Main extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    Value Value = new Value();
+    ServerUrl Value = new ServerUrl();
     private ViewPager mViewPager;
     AlertDialog.Builder dialog;
     /////////////////

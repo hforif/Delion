@@ -50,7 +50,7 @@
                 android:src="@drawable/saja_saying" />
 
             <ImageView
-                android:id="@+id/malpungsun"
+                android:id="@+id/image_malpungsun"
                 android:layout_width="192dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -64,7 +64,7 @@
                 android:layout_height="65dp">
 
                 <TextView
-                    android:id="@+id/text1"
+                    android:id="@+id/text_text1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="50"
@@ -73,7 +73,7 @@
                     android:textSize="10sp" />
 
                 <TextView
-                    android:id="@+id/text2"
+                    android:id="@+id/text_text2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="50"

@@ -51,13 +51,13 @@ public class Convenient_ListViewAdapter extends BaseAdapter {
         if(v == null){
             holder = new Convenient_ViewHolder();
             v= ((LayoutInflater)cContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.conveninet_store_listview_item, null);
-            holder.cIcon = (ImageView)v.findViewById(R.id.convenient_store_icon);
-            holder.cText = (TextView)v.findViewById(R.id.convenient_store_text);
-            holder.cDetail = (TextView)v.findViewById(R.id.convenient_store_detail);
-            holder.cCalling = (ImageView)v.findViewById(R.id.cCalling);
-            holder.cId = (TextView)v.findViewById(R.id.convenient_store_id);
-            holder.cUrl = (TextView)v.findViewById(R.id.convenient_store_url);
-            holder.cPnumber = (TextView)v.findViewById(R.id.convenient_store_pnumber);
+            holder.cIcon = (ImageView)v.findViewById(R.id.image_convenient_store_icon);
+            holder.cText = (TextView)v.findViewById(R.id.text_convenient_store);
+            holder.cDetail = (TextView)v.findViewById(R.id.text_convenient_store_detail);
+            holder.cCalling = (ImageView)v.findViewById(R.id.image_cCalling);
+            holder.cId = (TextView)v.findViewById(R.id.text_convenient_store_id);
+            holder.cUrl = (TextView)v.findViewById(R.id.text_convenient_store_url);
+            holder.cPnumber = (TextView)v.findViewById(R.id.text_convenient_store_pnumber);
             v.setTag(holder);
         }else{
             holder = (Convenient_ViewHolder)v.getTag();
@@ -77,7 +77,7 @@ public class Convenient_ListViewAdapter extends BaseAdapter {
         holder.cUrl.setText(cListCheck.getcStoreUrl());
         holder.cPnumber.setText(cListCheck.getcStorePnumber());
 
-        final TextView finalV2 = (TextView)v.findViewById(R.id.convenient_store_pnumber);
+        final TextView finalV2 = (TextView)v.findViewById(R.id.text_convenient_store_pnumber);
 
         holder.cCalling.setOnClickListener(new View.OnClickListener() {
             @Override

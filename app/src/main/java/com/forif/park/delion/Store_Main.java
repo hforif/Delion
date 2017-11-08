@@ -1,7 +1,6 @@
 package com.forif.park.delion;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -11,13 +10,11 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,23 +29,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 
 public class Store_Main extends ActionBarActivity {
     private ListView sListView = null;
     private Store_ListViewAdapter sAdapter = null;
-    Value Value = new Value();
-    private String aa;
+    ServerUrl Value = new ServerUrl();
+    private String typeOfStore;
     String[] t , t1 , t2 , t3 , t4 , t5;
     int index;
 //    @Override
@@ -83,11 +75,13 @@ public class Store_Main extends ActionBarActivity {
 
         String s = "shop/shop_list/";
 
-        //
-        int a = getIntent().getExtras().getInt("position");
-        aa = String.valueOf(a);
+//        int a = getIntent().getExtras().getInt("position");
+        typeOfStore = String.valueOf(getIntent().getExtras().getInt("position"));
 
-        switch (aa){
+
+
+
+        switch (typeOfStore){
             case "1" : getSupportActionBar().setTitle("치킨");
                 break;
             case "2" : getSupportActionBar().setTitle("중국집");
@@ -106,7 +100,7 @@ public class Store_Main extends ActionBarActivity {
                 break;
         }
 
-        final String url = base_url + s + aa;
+        final String url = base_url + s + typeOfStore; // url : http://222.239.250.218/delion/index.php/shop/shop_list/1 or 2 or 3 or ..
 
         AsyncHttpClient client = new AsyncHttpClient();
 
@@ -143,7 +137,7 @@ public class Store_Main extends ActionBarActivity {
                         t5[index] = json.getString("state");
                     }
                     for (index = 0; index < jsonArray.length(); index++) {
-                        switch (aa) {
+                        switch (typeOfStore) {
                             case "1":
                                 if(t3[index].equalsIgnoreCase("null")) { // 가게 이미지가 없을때 기본 썸네일
                                     Store_ListData s_1 = new Store_ListData(getResources().getDrawable(R.drawable.chicken_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index]);

@@ -30,7 +30,8 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 
-import static com.forif.park.delion.R.id.map;
+import static com.forif.park.delion.R.id.frag_map;
+//편의점,약국 등과 같은 list에서 하나를 눌렀을때 실행되는 activity
 
 
 public class Convenient_Store_Detail extends ActionBarActivity implements OnMapReadyCallback {
@@ -40,7 +41,7 @@ public class Convenient_Store_Detail extends ActionBarActivity implements OnMapR
 //    Button button3;
 //    Button button4;
 
-    Value Value = new Value();
+    ServerUrl Value = new ServerUrl();
     String urlm;
     String name;
     int a, b, c;
@@ -89,9 +90,9 @@ public class Convenient_Store_Detail extends ActionBarActivity implements OnMapR
         tv2 = (TextView)findViewById(R.id.lifecall);
         tv3 = (TextView)findViewById(R.id.lifename);
         */
-        tv1 = (TextView) findViewById(R.id.text1);
-        tv2 = (TextView) findViewById(R.id.text2);
-        tv4 = (TextView) findViewById(R.id.life_add);
+        tv1 = (TextView) findViewById(R.id.text_text1);
+        tv2 = (TextView) findViewById(R.id.text_text2);
+        tv4 = (TextView) findViewById(R.id.text_life_add);
         tv4.setEllipsize(TextUtils.TruncateAt.MARQUEE);
         tv4.setSingleLine(true);
         tv4.setSelected(true);
@@ -146,10 +147,10 @@ public class Convenient_Store_Detail extends ActionBarActivity implements OnMapR
                 });
 
             MapFragment mapFragment = (MapFragment) getFragmentManager()
-                    .findFragmentById(map);
+                    .findFragmentById(frag_map);
             mapFragment.getMapAsync(this);
 
-        ImageView ConPhoneCall = (ImageView)findViewById(R.id.ConDialButton);
+        ImageView ConPhoneCall = (ImageView)findViewById(R.id.button_ConDial);
 
         ConPhoneCall.setOnClickListener(new View.OnClickListener(){
             @Override

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/Desktop/delion/app/libs/JSONObject.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0d06924c09b79b680c15f03735378b3babec78ef">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/2/JSONObject_6211ba02f8c3e9aa7e25df04f08281a789492621/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/Desktop/delion/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ce5238a9a88724df90bb3640f76132c2d9986263">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_25db9daca7158da29a8449ad48bdf545224a102f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/Desktop/delion/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_148f5b34bd60d991c8427f3ca9568abf1867cc9c/classes.dex" />
+    </item>
+
+</items>

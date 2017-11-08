@@ -40,7 +40,7 @@ import java.util.ArrayList;
 public class Convenient_Store_Main extends ActionBarActivity {
     private ListView cListView = null; //메인리스트뷰를 받을 자바상의 리스트뷰 변수 선언
     private Convenient_ListViewAdapter cAdapter = null; //메인리스트뷰의 어뎁터로 쓰일 어뎁터 변수 선언
-    Value Value = new Value();
+    ServerUrl Value = new ServerUrl();
 
     private String aa;
     private String url;
@@ -598,9 +598,9 @@ public class Convenient_Store_Main extends ActionBarActivity {
         @Override
         public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
             // TODO Auto-generated method stub
-            TextView listText = (TextView) view.findViewById(R.id.convenient_store_id);
-            TextView urlText = (TextView) view.findViewById(R.id.convenient_store_url);
-            TextView nameText = (TextView) view.findViewById(R.id.convenient_store_text);
+            TextView listText = (TextView) view.findViewById(R.id.text_convenient_store_id);
+            TextView urlText = (TextView) view.findViewById(R.id.text_convenient_store_url);
+            TextView nameText = (TextView) view.findViewById(R.id.text_convenient_store);
             String url = urlText.getText().toString();
             String text = listText.getText().toString();
             String name = nameText.getText().toString();

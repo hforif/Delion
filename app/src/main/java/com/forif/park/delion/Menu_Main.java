@@ -30,7 +30,7 @@ import java.util.HashMap;
 public class Menu_Main extends AppCompatActivity {
     private ArrayList<String> mGroupList = null;
     private HashMap<String, ArrayList<String>> mChildList = null;
-    Value Value = new Value();
+    ServerUrl Value = new ServerUrl();
     private AnimatedExpandableListView CrazyListView;
     private ArrayList<String> searchgroup;
     private ArrayList<String> resultgroup;
@@ -63,8 +63,8 @@ public class Menu_Main extends AppCompatActivity {
 
         //Circle 속 string
         final TextView tv1, tv2, tv3, pnumber;
-        tv1 = (TextView) findViewById(R.id.text1);
-        tv2 = (TextView) findViewById(R.id.text2);
+        tv1 = (TextView) findViewById(R.id.text_text1);
+        tv2 = (TextView) findViewById(R.id.text_text2);
 
 //        tv3 = (TextView)findViewById(R.id.text3);
         pnumber = (TextView) findViewById(R.id.menu_pnumber);
