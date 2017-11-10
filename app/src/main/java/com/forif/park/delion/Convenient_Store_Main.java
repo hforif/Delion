@@ -52,7 +52,7 @@ public class Convenient_Store_Main extends ActionBarActivity {
     private String typeOfConvStore;
     private String url;
 
-    String[] t, t1, t2, t3, t4, t5, t6;
+//    String[] t, t1, t2, t3, t4, t5, t6;
     int index;
     //탭바
 //    Button button1;
@@ -165,7 +165,7 @@ public class Convenient_Store_Main extends ActionBarActivity {
 
                             public void run() {
                                 try {
-                                    bitmapSample1 = getBitmap(t3[count]);
+                                    bitmapSample1 = getBitmap(tempImagePath[count]);
                                 } catch (Exception e) {
 
                                 } finally {
