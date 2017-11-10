@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 /**
  * Created by park on 2015-08-06.
  */
+
 public class Convenient_ListData {
     private Drawable cStoreIcon;
     private Drawable cStoreCallIcon;
