@@ -3,30 +3,381 @@
 
     <item
         is-multidex="true"
-        jar="/Users/RYAN/Desktop/delion/app/libs/JSONObject.jar"
+        jar="/Users/RYAN/.android/build-cache/09294e1835f1e6799eb184b7c7bf042e168363a5/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.0"
-        sha1="0d06924c09b79b680c15f03735378b3babec78ef">
-        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/2/JSONObject_6211ba02f8c3e9aa7e25df04f08281a789492621/classes.dex" />
+        revision="26.0.2"
+        sha1="130b32ed466fa0f63efd4c7d6250ccd2ed506790">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6daa3d57509c609364b37653728de1972ca0a243/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/7c3b5b517467694142af8a6218a808ae1fdebc98/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c0c912d58c9468b1f9d9769c8975afdf2c85d681">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_127c55cf7b06b61d6bcbcb85e4b8ee45e79c87aa/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.2.0/41e67dba73c3347e4503761642c39d0e06ca1f2/retrofit-2.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="041e67dba73c3347e4503761642c39d0e06ca1f2">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/retrofit-2.2.0_37cf05edef105392faa9293945aeb70ece007216/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.11.0/840897fcd7223a8143f1d9b6f69714e7be34fd50/okio-1.11.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="840897fcd7223a8143f1d9b6f69714e7be34fd50">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.11.0_332657b93758881d79d9ed42f01e5e25d49eed39/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.7_bea4cd4d6355cb1eccc07c56dad6dae59e2c32a9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/0436ac427a22c7cbf2aefb4b63a7ad5dae218782/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d11330ea68c0d964d30d5caed1f27e6b1488b189">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2212fb7dd30133b1890544d7bb049049b832242a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/ee2df448c0cd304bc344dd408f335afe6713376f/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="98137c4d12c50923f5809852b1ef4d1c4e162081">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_90e7705f4e6bd709b9aebff38ae04d21dc4cbcef/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/3.6.0/a7537446a030da8eb0da4c71424d16c2589f6c4a/glide-3.6.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a7537446a030da8eb0da4c71424d16c2589f6c4a">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/glide-3.6.0_1dcdc2dc8cceae73de555c9022bd778e075458e3/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.1.0_17f67d51a1bf055ecbb9100231c4454dd244051d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/3c3e970dd4e168e22bc8d96f7c3c700005fdf6f6/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2491ae1b2a848af1f4f0c795f3117c1bd6a1989f">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_fd680ac8b65e40955c6f8a61656e25568c5065c1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/4b10d689dd0f12758b07e0270ef8bcb3ebc111ac/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_dcbf246a9c2597e6bc1a84c37654d34fd6f9cea4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.6.0_5623453c33b954b1b547fda502479008234c2d80/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/2e758c4cd377483bdbaa07c48ec2fa956f3fa7e5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c5cafb324568d954780abb858c25db7ce675ab3c">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_de388ff495484c42825867cc5696878859a20e37/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/3f25c4fc1439433621c6e203c150934e8b9e70ac/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="1ff30fa49c07a08c3035d7218a3efebf5680d522">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_8fa59909c2d5e86592c3c02aea22889a41f0e8cf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/d5ade7fa5ea65bfcc95749c4d0d251d1b19f90dc/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="edea92852b40eee716e910af8dad9eeaa58fb0e1">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_64e912b6ccfc6c2dac4d835f7f63a71787222bcd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/d8e9215063cce49b0719e269f840370a62521e41/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b99f0b78bbcb76b915bc6529a83b65d4d46990dd">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6e61f1b90d4d4a11b4ea069ce977a0868be25359/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.8/77bbfe240e437ecb396d982afa0d3bd4f9090ba7/android-async-http-1.4.8.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="77bbfe240e437ecb396d982afa0d3bd4f9090ba7">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/android-async-http-1.4.8_f9e7f606d6ed485f83d0e03dc2f2308e49b39253/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/b7116dae8ede9cddec514379d8d8b0ebaaae0f2e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6e85edfc9b5346d216e50ccef1f8e825504144a3">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_1cf01fc0c4520423595151d15256c2bc04929d99/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/085529b07353a540db37e5f784e487d9a6178d92/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e23ea11124bb700eeddd4ab7aa848c615f493850">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f0c26e666439a12ea87dc43a3154bf32e9c05f1e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/1c3307178748d8e271309e36179bcf3259727cd8/output/jars/libs/internal_impl-22.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-22.2.0_48e41afeb7ffa9c24a165f3bf222be5d0d1ba928/classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="/Users/RYAN/Desktop/delion/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.0"
-        sha1="ce5238a9a88724df90bb3640f76132c2d9986263">
+        revision="26.0.2"
+        sha1="20524c118893422afbbd5e6c139ccb2f2ecc3b9d">
         <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_25db9daca7158da29a8449ad48bdf545224a102f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/67ea3399e6ddc80a08ec677abd1fd33631ca4c1e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="42a1ee578b62fd1bd28b3307a679dc9ba0791587">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0db5becaedca4f634039ce64341b9aeadd10f78b/classes.dex" />
     </item>
     <item
         is-multidex="true"
         jar="/Users/RYAN/Desktop/delion/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
-        revision="25.0.0"
-        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        revision="26.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_148f5b34bd60d991c8427f3ca9568abf1867cc9c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/1c5932eb3d019db590a6a01622e4a6811b47227a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d91a7c265f57147e44114830f47708853ed72608/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/b10888f25f85733a9710b0e74da2c910253aff66/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cb6fab7a71fa9ec1f483d44c5fca65ab469d8aca">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5a33e422dadf8c5688079e08d37243a0f77419b9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/2e947470b3c3e52644c42f745f4e20a985c636c7/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c2ac04c5b232f6f0658ee4f1c13be09cd76406e2">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_015b81f6f8536036d8b83c745d55c5ecc15d7a8b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.2.0/a09926806199499a20b2f5168779499abfa33342/converter-gson-2.2.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a09926806199499a20b2f5168779499abfa33342">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/converter-gson-2.2.0_3e15a4310e19b8dffd803619aef58791f3f6a1f9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/7c33c31fb676de756f935ab474a6a092ffb27ad1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_47f517438659cd2329b4524008a09330a993412b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/db4be916e0b7880515f4e4ba8399173961ae2615/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c756d14e99d39471e99013a1e8fd2f3813ed42bf">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_897be1e2ca802591cd17b0aa7f39e0eeaa9dd787/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/Desktop/delion/app/libs/JSONObject.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0d06924c09b79b680c15f03735378b3babec78ef">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/2/JSONObject_6211ba02f8c3e9aa7e25df04f08281a789492621/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.2/b8e98ae35bf6e3f14382deb60f2ea6e4e0e220fd/httpcore-4.4.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b8e98ae35bf6e3f14382deb60f2ea6e4e0e220fd">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/httpcore-4.4.2_817fb43b5f6780756bdf6f6319208ac3b2ab9fe9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/f8e64bafca3a5e161cecee5d00ab2a7f65bb3163/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4a135d56554069e5d0ff80e3220e887e57146ee5">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_6d621ec6cf35aa11cfaba93ef8cbc1b087340f55/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/4b10d689dd0f12758b07e0270ef8bcb3ebc111ac/output/jars/libs/internal_impl-23.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.1.0_06e0a4c91d30dfae7177e105d5bc18f8ec8a3861/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/90003f18f73afd44293ae9af7225068dd9f6ba24/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="166e458ee3b5fb5fcff0f936df3f3a788e6c54f3">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e66c1e238098f2cbe6580a5ced7a81c62e475647/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/411b9c350539dec7f40dd4bad3cddb264b0a9ab1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2e24e5f1b11170163028277de63f709e42525db4">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_d5f95768df0f5ab83e90c024c49660f515a88258/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/1189268f06f95d8ee74c3cd40020109eaeac400a/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="adebe28e0c0c05d34a3bfd76f3275bf4d8ff87b6">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_fdfb1ba3b3205fb8c4ad69a2001866b57ec4df19/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/53c3d417ff693968d1b417bac5dfe73f456dd6ea/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="19026d31f5d3ae868db81319671a642be5fbba08">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a99300522c010a29b88f54fb3aaaf3a4e49ec477/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/3fabf680e2889bdb5520da94c6c3513329432bc5/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="0124ce31248c0e8acfa2b28283c6d1a4d76e73d2">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_2800bc4dec1611645c30cd6fcca6ee6071f22e90/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/library-2.4.0_aacdc20ad82b57d2cc39d6226f91ef39b6d3f7ab/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/0b9dc207638f3eb2a1b237a077cf34aa3e50be15/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="288913b440a3c61c30aa171095453a605432277a">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_55ad120297856cbb39469e2fccd9ff0e37e968cd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/3c6f564223a3eb2965c36e87d7aa9f8e6f77d6aa/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="77a9dcb5f8b1dba36aacaa9c150eb0942dbea158">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_21063b4d7f5ffdb8c495b7cfb6f2bc19ba9f3ed6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/RYAN/.android/build-cache/1c3307178748d8e271309e36179bcf3259727cd8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="/Users/RYAN/Desktop/delion/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_07fa726a8bd485d7cba245cecb3ece619d9cdd16/classes.dex" />
     </item>
 
 </items>
