@@ -11,6 +11,7 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.telecom.Call;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,6 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -35,6 +37,12 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Convenient_Store_Main extends ActionBarActivity {
@@ -42,10 +50,10 @@ public class Convenient_Store_Main extends ActionBarActivity {
     private Convenient_ListViewAdapter cAdapter = null; //메인리스트뷰의 어뎁터로 쓰일 어뎁터 변수 선언
     ServerUrl Value = new ServerUrl();
 
-    private String aa;
+    private String typeOfConvStore;
     private String url;
 
-    String[] t ,t1 , t2 , t3 , t4 , t5 , t6;
+    String[] t, t1, t2, t3, t4, t5, t6;
     int index;
     //탭바
 //    Button button1;
@@ -55,8 +63,13 @@ public class Convenient_Store_Main extends ActionBarActivity {
 
     //---------
 
-    EditText search;
+    private DelionInterface interfaces;
+    private Retrofit retrofit;
+    public static List<Convenient_JSONData> convJSONList;
+    String[] tempId, tempName, tempImagePath, tempDetail, tempAddUrl, tempPnum, tempState;
 
+
+    EditText search;
 
 
     @Override
@@ -73,23 +86,18 @@ public class Convenient_Store_Main extends ActionBarActivity {
         //검색기능
 
         cAdapter = new Convenient_ListViewAdapter(getApplicationContext());
-        cListView = (ListView)findViewById(R.id.convenient_store_list_view);
+        cListView = (ListView) findViewById(R.id.convenient_store_list_view);
         cListView.setAdapter(cAdapter);
         cListView.setOnItemClickListener(new ListClickHandler());
 
 
-
         //
 
-        String base_url = Value.url;
-        String l = "lifeinfo/life_list/";
 
-        //
-        int a = getIntent().getExtras().getInt("position");
-        aa = String.valueOf(a);
-        url = base_url + l + aa;
-        //
-        switch (aa){
+        // Retrofit 통신 부분
+
+        typeOfConvStore = String.valueOf(getIntent().getExtras().getInt("position"));
+        switch (typeOfConvStore) {
             case "8":
                 getSupportActionBar().setTitle("세탁소");
                 break;
@@ -119,329 +127,471 @@ public class Convenient_Store_Main extends ActionBarActivity {
                 break;
         }
 
-        //
-        AsyncHttpClient client = new AsyncHttpClient();
+        retrofit = new Retrofit.Builder()
+                .baseUrl(DelionInterface.ServerUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        interfaces = retrofit.create(DelionInterface.class);
 
-        client.get(url, new AsyncHttpResponseHandler() {
+        retrofit2.Call<List<Convenient_JSONData>> callConvStoreList = interfaces.getConvList(Integer.parseInt(typeOfConvStore));
+
+        callConvStoreList.enqueue(new Callback<List<Convenient_JSONData>>() {
             @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+            public void onResponse(retrofit2.Call<List<Convenient_JSONData>> call, Response<List<Convenient_JSONData>> response) {
+                convJSONList = response.body();
+                tempId = new String[convJSONList.size()];
+                tempName = new String[convJSONList.size()];
+                tempImagePath = new String[convJSONList.size()];
+                tempDetail = new String[convJSONList.size()];
+                tempAddUrl = new String[convJSONList.size()];
+                tempPnum = new String[convJSONList.size()];
+                tempState = new String[convJSONList.size()];
 
-                String content = null;
-                try {
-                    content = new String(responseBody, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
+                for (index = 0; index < convJSONList.size(); index++) {
+                    tempId[index] = convJSONList.get(index).getmConvId();
+                    tempName[index] = convJSONList.get(index).getmConvName();
+                    tempImagePath[index] = convJSONList.get(index).getmConvImagePath();
+                    tempDetail[index] = convJSONList.get(index).getmConvDetail();
+                    tempAddUrl[index] = convJSONList.get(index).getmConvAddUrl();
+                    tempPnum[index] = convJSONList.get(index).getmConvPnum();
+                    tempState[index] = convJSONList.get(index).getmConvState();
                 }
-                try {
-                    JSONArray jsonArray = new JSONArray(content);
-                    t = new String[jsonArray.length()];
-                    t1 = new String[jsonArray.length()];
-                    t2 = new String[jsonArray.length()];
-                    t3 = new String[jsonArray.length()];
-                    t4 = new String[jsonArray.length()];
-                    t5 = new String[jsonArray.length()];
-                    t6 = new String[jsonArray.length()];
 
-                    for (index = 0 ; index < jsonArray.length(); index++) {
+                for (index = 0; index < convJSONList.size(); index++) {
+                    if (!tempImagePath[index].equals("null")) {//가게 이미지가 있을때
+                        new Thread(new Runnable() {
+                            int count = index;
+                            public Drawable Convenient_Img;
+                            Bitmap bitmapSample1;
 
-                        JSONObject json = jsonArray.getJSONObject(index);
+                            public void run() {
+                                try {
+                                    bitmapSample1 = getBitmap(t3[count]);
+                                } catch (Exception e) {
 
-                        t[index] = json.getString("id");
-                        t1[index] = json.getString("name");
-                        t2[index] = json.getString("branch");
-                        t3[index] = json.getString("img");
-                        t4[index] = json.getString("life_add_url");
-                        t5[index] = json.getString("phone");
-                        t6[index] = json.getString("state");
-                    }
-                    for (index = 0 ; index < jsonArray.length(); index++) {
-                        switch (aa) {
+                                } finally {
+                                    if (bitmapSample1 != null) {
+                                        runOnUiThread(new Runnable() {
+                                            @SuppressLint("NewApi")
+                                            public void run() {
+                                                Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
+                                                Convenient_ListData data = new Convenient_ListData(Convenient_Img, tempName[count], tempDetail[count],
+                                                        getResources().getDrawable(R.drawable.call_button), tempId[count], tempAddUrl[count], tempPnum[count]);
+                                                cAdapter.addItem(data);
+                                                cAdapter.notifyDataSetChanged();
+                                            }
+                                        });
+                                    }
+                                }
+                            }
+                        }).start();
+
+                    } else { //가게 이미지가 없을때
+                        switch (typeOfConvStore) {
                             case "8":
-                                if (t3[index].equalsIgnoreCase("null")) { //가게 이미지가 없을때 기본 썸네일
-                                    Convenient_ListData u_1 = new Convenient_ListData(getResources().getDrawable(R.drawable.laundry_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
-                                    cAdapter.addItem(u_1);
-                                    cAdapter.notifyDataSetChanged();
-                                    break;
-                                } else { //가게 이미지가 있을때
-                                    new Thread(new Runnable() {
-                                        int count = index;
-                                        public Drawable Convenient_Img;
-                                        Bitmap bitmapSample1;
-
-                                        public void run() {
-                                            try {
-                                                bitmapSample1 = getBitmap(t3[count]);
-                                            } catch (Exception e) {
-
-                                            } finally {
-                                                if (bitmapSample1 != null) {
-                                                    runOnUiThread(new Runnable() {
-                                                        @SuppressLint("NewApi")
-                                                        public void run() {
-                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
-                                                            Convenient_ListData u_1 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
-                                                            cAdapter.addItem(u_1);
-                                                            cAdapter.notifyDataSetChanged();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        }
-                                    }).start();
-                                    break;
-                                }
-                            case "9":
-                                if (t3[index].equalsIgnoreCase("null")) {
-                                    Convenient_ListData u_2 = new Convenient_ListData(getResources().getDrawable(R.drawable.convenience_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
-                                    cAdapter.addItem(u_2);
-                                    cAdapter.notifyDataSetChanged();
-                                    break;
-                                } else {
-                                    new Thread(new Runnable() {
-                                        int count = index;
-                                        public Drawable Convenient_Img;
-                                        Bitmap bitmapSample1;
-
-                                        public void run() {
-                                            try {
-                                                bitmapSample1 = getBitmap(t3[count]);
-                                            } catch (Exception e) {
-
-                                            } finally {
-                                                if (bitmapSample1 != null) {
-                                                    runOnUiThread(new Runnable() {
-                                                        @SuppressLint("NewApi")
-                                                        public void run() {
-                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
-                                                            Convenient_ListData u_2 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
-                                                            cAdapter.addItem(u_2);
-                                                            cAdapter.notifyDataSetChanged();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        }
-                                    }).start();
-                                    break;
-                                }
-                            case "10":
-                                if (t3[index].equalsIgnoreCase("null")) {
-                                    Convenient_ListData u_3 = new Convenient_ListData(getResources().getDrawable(R.drawable.drug_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
-                                    cAdapter.addItem(u_3);
-                                    cAdapter.notifyDataSetChanged();
-                                    break;
-                                } else {
-                                    new Thread(new Runnable() {
-                                        int count = index;
-                                        public Drawable Convenient_Img;
-                                        Bitmap bitmapSample1;
-
-                                        public void run() {
-                                            try {
-                                                bitmapSample1 = getBitmap(t3[count]);
-                                            } catch (Exception e) {
-
-                                            } finally {
-                                                if (bitmapSample1 != null) {
-                                                    runOnUiThread(new Runnable() {
-                                                        @SuppressLint("NewApi")
-                                                        public void run() {
-                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
-                                                            Convenient_ListData u_3 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
-                                                            cAdapter.addItem(u_3);
-                                                            cAdapter.notifyDataSetChanged();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        }
-                                    }).start();
-                                    break;
-                                }
-                            case "11":
-                                if (t3[index].equalsIgnoreCase("null")) {
-                                    Convenient_ListData u_4 = new Convenient_ListData(getResources().getDrawable(R.drawable.hospital_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
-                                    cAdapter.addItem(u_4);
-                                    cAdapter.notifyDataSetChanged();
-                                    break;
-                                } else {
-                                    new Thread(new Runnable() {
-                                        int count = index;
-                                        public Drawable Convenient_Img;
-                                        Bitmap bitmapSample1;
-
-                                        public void run() {
-                                            try {
-                                                bitmapSample1 = getBitmap(t3[count]);
-                                            } catch (Exception e) {
-
-                                            } finally {
-                                                if (bitmapSample1 != null) {
-                                                    runOnUiThread(new Runnable() {
-                                                        @SuppressLint("NewApi")
-                                                        public void run() {
-                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
-                                                            Convenient_ListData u_4 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
-                                                            cAdapter.addItem(u_4);
-                                                            cAdapter.notifyDataSetChanged();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        }
-                                    }).start();
-                                    break;
-                                }
-                            case "12":
-                                if (t3[index].equalsIgnoreCase("null")) {
-                                    Convenient_ListData u_5 = new Convenient_ListData(getResources().getDrawable(R.drawable.print_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
-                                    cAdapter.addItem(u_5);
-                                    cAdapter.notifyDataSetChanged();
-                                    break;
-                                } else {
-                                    new Thread(new Runnable() {
-                                        int count = index;
-                                        public Drawable Convenient_Img;
-                                        Bitmap bitmapSample1;
-
-                                        public void run() {
-                                            try {
-                                                bitmapSample1 = getBitmap(t3[count]);
-                                            } catch (Exception e) {
-
-                                            } finally {
-                                                if (bitmapSample1 != null) {
-                                                    runOnUiThread(new Runnable() {
-                                                        @SuppressLint("NewApi")
-                                                        public void run() {
-                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
-                                                            Convenient_ListData u_5 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
-                                                            cAdapter.addItem(u_5);
-                                                            cAdapter.notifyDataSetChanged();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        }
-                                    }).start();
-                                    break;
-                                }
-                            case "13":
-                                if (t3[index].equalsIgnoreCase("null")) {
-                                    Convenient_ListData u_6 = new Convenient_ListData(getResources().getDrawable(R.drawable.mungu_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
-                                    cAdapter.addItem(u_6);
-                                    cAdapter.notifyDataSetChanged();
-                                    break;
-                                } else {
-                                    new Thread(new Runnable() {
-                                        int count = index;
-                                        public Drawable Convenient_Img;
-                                        Bitmap bitmapSample1;
-
-                                        public void run() {
-                                            try {
-                                                bitmapSample1 = getBitmap(t3[count]);
-                                            } catch (Exception e) {
-
-                                            } finally {
-                                                if (bitmapSample1 != null) {
-                                                    runOnUiThread(new Runnable() {
-                                                        @SuppressLint("NewApi")
-                                                        public void run() {
-                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
-                                                            Convenient_ListData u_6 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
-                                                            cAdapter.addItem(u_6);
-                                                            cAdapter.notifyDataSetChanged();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        }
-                                    }).start();
-                                    break;
-                                }
-                            case "14":
-                                if (t3[index].equalsIgnoreCase("null")) {
-                                    Convenient_ListData u_7 = new Convenient_ListData(getResources().getDrawable(R.drawable.bank_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
-                                    cAdapter.addItem(u_7);
-                                    cAdapter.notifyDataSetChanged();
-                                    break;
-                                } else {
-                                    new Thread(new Runnable() {
-                                        int count = index;
-                                        public Drawable Convenient_Img;
-                                        Bitmap bitmapSample1;
-
-                                        public void run() {
-                                            try {
-                                                bitmapSample1 = getBitmap(t3[count]);
-                                            } catch (Exception e) {
-
-                                            } finally {
-                                                if (bitmapSample1 != null) {
-                                                    runOnUiThread(new Runnable() {
-                                                        @SuppressLint("NewApi")
-                                                        public void run() {
-                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
-                                                            Convenient_ListData u_7 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
-                                                            cAdapter.addItem(u_7);
-                                                            cAdapter.notifyDataSetChanged();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        }
-                                    }).start();
-                                    break;
-                                }
-                            case "15":
-                                if (t3[index].equalsIgnoreCase("null")) {
-                                    Convenient_ListData u_8 = new Convenient_ListData(getResources().getDrawable(R.drawable.susun_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
-                                    cAdapter.addItem(u_8);
-                                    cAdapter.notifyDataSetChanged();
-                                    break;
-                                } else {
-                                    new Thread(new Runnable() {
-                                        int count = index;
-                                        public Drawable Convenient_Img;
-                                        Bitmap bitmapSample1;
-
-                                        public void run() {
-                                            try {
-                                                bitmapSample1 = getBitmap(t3[count]);
-                                            } catch (Exception e) {
-
-                                            } finally {
-                                                if (bitmapSample1 != null) {
-                                                    runOnUiThread(new Runnable() {
-                                                        @SuppressLint("NewApi")
-                                                        public void run() {
-                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
-                                                            Convenient_ListData u_8 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
-                                                            cAdapter.addItem(u_8);
-                                                            cAdapter.notifyDataSetChanged();
-                                                        }
-                                                    });
-                                                }
-                                            }
-                                        }
-                                    }).start();
-                                    break;
-                                }
-                            default:
+                                Convenient_ListData data_8 = new Convenient_ListData(getResources().getDrawable(R.drawable.laundry_thumbnails), tempName[index], tempDetail[index],
+                                        getResources().getDrawable(R.drawable.call_button), tempId[index], tempAddUrl[index], tempPnum[index]);
+                                cAdapter.addItem(data_8);
+                                cAdapter.notifyDataSetChanged();
                                 break;
+
+                            case "9":
+                                Convenient_ListData data_9 = new Convenient_ListData(getResources().getDrawable(R.drawable.convenience_thumbnails), tempName[index], tempDetail[index],
+                                        getResources().getDrawable(R.drawable.call_button), tempId[index], tempAddUrl[index], tempPnum[index]);
+                                cAdapter.addItem(data_9);
+                                cAdapter.notifyDataSetChanged();
+                                break;
+
+                            case "10":
+                                Convenient_ListData data_10=new Convenient_ListData(getResources().getDrawable(R.drawable.drug_thumbnails),tempName[index],tempDetail[index],
+                                        getResources().getDrawable(R.drawable.call_button),tempId[index],tempAddUrl[index],tempPnum[index]);
+                                cAdapter.addItem(data_10);
+                                cAdapter.notifyDataSetChanged();
+                                break;
+
+                            case "11":
+                                Convenient_ListData data_11=new Convenient_ListData(getResources().getDrawable(R.drawable.hospital_thumbnails),tempName[index],tempDetail[index],
+                                        getResources().getDrawable(R.drawable.call_button),tempId[index],tempAddUrl[index],tempPnum[index]);
+                                cAdapter.addItem(data_11);
+                                cAdapter.notifyDataSetChanged();
+                                break;
+
+                            case "12":
+                                Convenient_ListData data_12=new Convenient_ListData(getResources().getDrawable(R.drawable.print_thumbnails),tempName[index],tempDetail[index],
+                                        getResources().getDrawable(R.drawable.call_button),tempId[index],tempAddUrl[index],tempPnum[index]);
+                                cAdapter.addItem(data_12);
+                                cAdapter.notifyDataSetChanged();
+                                break;
+
+                            case "13":
+                                Convenient_ListData data_13=new Convenient_ListData(getResources().getDrawable(R.drawable.mungu_thumbnails),tempName[index],tempDetail[index],
+                                        getResources().getDrawable(R.drawable.call_button),tempId[index],tempAddUrl[index],tempPnum[index]);
+                                cAdapter.addItem(data_13);
+                                cAdapter.notifyDataSetChanged();
+                                break;
+
+                            case "14":
+                                Convenient_ListData data_14=new Convenient_ListData(getResources().getDrawable(R.drawable.bank_thumbnails),tempName[index],tempDetail[index],
+                                        getResources().getDrawable(R.drawable.call_button),tempId[index],tempAddUrl[index],tempPnum[index]);
+                                cAdapter.addItem(data_14);
+                                cAdapter.notifyDataSetChanged();
+                                break;
+
+                            case "15":
+                                Convenient_ListData data_15=new Convenient_ListData(getResources().getDrawable(R.drawable.susun_thumbnails),tempName[index],tempDetail[index],
+                                        getResources().getDrawable(R.drawable.call_button),tempId[index],tempAddUrl[index],tempPnum[index]);
+                                cAdapter.addItem(data_15);
+                                cAdapter.notifyDataSetChanged();
+                                break;
+
+                                default:
+                                    break;
+
                         }
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
+
             }
 
             @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+            public void onFailure(retrofit2.Call<List<Convenient_JSONData>> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+//        String base_url = Value.url;
+//        String l = "lifeinfo/life_list/";
+
+        //
+//        int a = getIntent().getExtras().getInt("position");
+//        typeOfConvStore = String.valueOf(a);
+//        url = base_url + l + typeOfConvStore;
+        //
+
+        //
+//        AsyncHttpClient client = new AsyncHttpClient();
+
+//        client.get(url, new AsyncHttpResponseHandler() {
+//            @Override
+//            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+//
+//                String content = null;
+//                try {
+//                    content = new String(responseBody, "UTF-8");
+//                } catch (UnsupportedEncodingException e) {
+//                    e.printStackTrace();
+//                }
+//                try {
+//                    JSONArray jsonArray = new JSONArray(content);
+//                    t = new String[jsonArray.length()];
+//                    t1 = new String[jsonArray.length()];
+//                    t2 = new String[jsonArray.length()];
+//                    t3 = new String[jsonArray.length()];
+//                    t4 = new String[jsonArray.length()];
+//                    t5 = new String[jsonArray.length()];
+//                    t6 = new String[jsonArray.length()];
+//
+//                    for (index = 0; index < jsonArray.length(); index++) {
+//
+//                        JSONObject json = jsonArray.getJSONObject(index);
+//
+//                        t[index] = json.getString("id");
+//                        t1[index] = json.getString("name");
+//                        t2[index] = json.getString("branch");
+//                        t3[index] = json.getString("img");
+//                        t4[index] = json.getString("life_add_url");
+//                        t5[index] = json.getString("phone");
+//                        t6[index] = json.getString("state");
+//                    }
+//                    for (index = 0; index < jsonArray.length(); index++) {
+//                        switch (typeOfConvStore) {
+//                            case "8":
+//                                if (t3[index].equalsIgnoreCase("null")) { //가게 이미지가 없을때 기본 썸네일
+//                                    Convenient_ListData u_1 = new Convenient_ListData(getResources().getDrawable(R.drawable.laundry_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
+//                                    cAdapter.addItem(u_1);
+//                                    cAdapter.notifyDataSetChanged();
+//                                    break;
+//                                } else { //가게 이미지가 있을때
+//                                    new Thread(new Runnable() {
+//                                        int count = index;
+//                                        public Drawable Convenient_Img;
+//                                        Bitmap bitmapSample1;
+//
+//                                        public void run() {
+//                                            try {
+//                                                bitmapSample1 = getBitmap(t3[count]);
+//                                            } catch (Exception e) {
+//
+//                                            } finally {
+//                                                if (bitmapSample1 != null) {
+//                                                    runOnUiThread(new Runnable() {
+//                                                        @SuppressLint("NewApi")
+//                                                        public void run() {
+//                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
+//                                                            Convenient_ListData u_1 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
+//                                                            cAdapter.addItem(u_1);
+//                                                            cAdapter.notifyDataSetChanged();
+//                                                        }
+//                                                    });
+//                                                }
+//                                            }
+//                                        }
+//                                    }).start();
+//                                    break;
+//                                }
+//                            case "9":
+//                                if (t3[index].equalsIgnoreCase("null")) {
+//                                    Convenient_ListData u_2 = new Convenient_ListData(getResources().getDrawable(R.drawable.convenience_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
+//                                    cAdapter.addItem(u_2);
+//                                    cAdapter.notifyDataSetChanged();
+//                                    break;
+//                                } else {
+//                                    new Thread(new Runnable() {
+//                                        int count = index;
+//                                        public Drawable Convenient_Img;
+//                                        Bitmap bitmapSample1;
+//
+//                                        public void run() {
+//                                            try {
+//                                                bitmapSample1 = getBitmap(t3[count]);
+//                                            } catch (Exception e) {
+//
+//                                            } finally {
+//                                                if (bitmapSample1 != null) {
+//                                                    runOnUiThread(new Runnable() {
+//                                                        @SuppressLint("NewApi")
+//                                                        public void run() {
+//                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
+//                                                            Convenient_ListData u_2 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
+//                                                            cAdapter.addItem(u_2);
+//                                                            cAdapter.notifyDataSetChanged();
+//                                                        }
+//                                                    });
+//                                                }
+//                                            }
+//                                        }
+//                                    }).start();
+//                                    break;
+//                                }
+//                            case "10":
+//                                if (t3[index].equalsIgnoreCase("null")) {
+//                                    Convenient_ListData u_3 = new Convenient_ListData(getResources().getDrawable(R.drawable.drug_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
+//                                    cAdapter.addItem(u_3);
+//                                    cAdapter.notifyDataSetChanged();
+//                                    break;
+//                                } else {
+//                                    new Thread(new Runnable() {
+//                                        int count = index;
+//                                        public Drawable Convenient_Img;
+//                                        Bitmap bitmapSample1;
+//
+//                                        public void run() {
+//                                            try {
+//                                                bitmapSample1 = getBitmap(t3[count]);
+//                                            } catch (Exception e) {
+//
+//                                            } finally {
+//                                                if (bitmapSample1 != null) {
+//                                                    runOnUiThread(new Runnable() {
+//                                                        @SuppressLint("NewApi")
+//                                                        public void run() {
+//                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
+//                                                            Convenient_ListData u_3 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
+//                                                            cAdapter.addItem(u_3);
+//                                                            cAdapter.notifyDataSetChanged();
+//                                                        }
+//                                                    });
+//                                                }
+//                                            }
+//                                        }
+//                                    }).start();
+//                                    break;
+//                                }
+//                            case "11":
+//                                if (t3[index].equalsIgnoreCase("null")) {
+//                                    Convenient_ListData u_4 = new Convenient_ListData(getResources().getDrawable(R.drawable.hospital_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
+//                                    cAdapter.addItem(u_4);
+//                                    cAdapter.notifyDataSetChanged();
+//                                    break;
+//                                } else {
+//                                    new Thread(new Runnable() {
+//                                        int count = index;
+//                                        public Drawable Convenient_Img;
+//                                        Bitmap bitmapSample1;
+//
+//                                        public void run() {
+//                                            try {
+//                                                bitmapSample1 = getBitmap(t3[count]);
+//                                            } catch (Exception e) {
+//
+//                                            } finally {
+//                                                if (bitmapSample1 != null) {
+//                                                    runOnUiThread(new Runnable() {
+//                                                        @SuppressLint("NewApi")
+//                                                        public void run() {
+//                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
+//                                                            Convenient_ListData u_4 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
+//                                                            cAdapter.addItem(u_4);
+//                                                            cAdapter.notifyDataSetChanged();
+//                                                        }
+//                                                    });
+//                                                }
+//                                            }
+//                                        }
+//                                    }).start();
+//                                    break;
+//                                }
+//                            case "12":
+//                                if (t3[index].equalsIgnoreCase("null")) {
+//                                    Convenient_ListData u_5 = new Convenient_ListData(getResources().getDrawable(R.drawable.print_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
+//                                    cAdapter.addItem(u_5);
+//                                    cAdapter.notifyDataSetChanged();
+//                                    break;
+//                                } else {
+//                                    new Thread(new Runnable() {
+//                                        int count = index;
+//                                        public Drawable Convenient_Img;
+//                                        Bitmap bitmapSample1;
+//
+//                                        public void run() {
+//                                            try {
+//                                                bitmapSample1 = getBitmap(t3[count]);
+//                                            } catch (Exception e) {
+//
+//                                            } finally {
+//                                                if (bitmapSample1 != null) {
+//                                                    runOnUiThread(new Runnable() {
+//                                                        @SuppressLint("NewApi")
+//                                                        public void run() {
+//                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
+//                                                            Convenient_ListData u_5 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
+//                                                            cAdapter.addItem(u_5);
+//                                                            cAdapter.notifyDataSetChanged();
+//                                                        }
+//                                                    });
+//                                                }
+//                                            }
+//                                        }
+//                                    }).start();
+//                                    break;
+//                                }
+//                            case "13":
+//                                if (t3[index].equalsIgnoreCase("null")) {
+//                                    Convenient_ListData u_6 = new Convenient_ListData(getResources().getDrawable(R.drawable.mungu_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
+//                                    cAdapter.addItem(u_6);
+//                                    cAdapter.notifyDataSetChanged();
+//                                    break;
+//                                } else {
+//                                    new Thread(new Runnable() {
+//                                        int count = index;
+//                                        public Drawable Convenient_Img;
+//                                        Bitmap bitmapSample1;
+//
+//                                        public void run() {
+//                                            try {
+//                                                bitmapSample1 = getBitmap(t3[count]);
+//                                            } catch (Exception e) {
+//
+//                                            } finally {
+//                                                if (bitmapSample1 != null) {
+//                                                    runOnUiThread(new Runnable() {
+//                                                        @SuppressLint("NewApi")
+//                                                        public void run() {
+//                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
+//                                                            Convenient_ListData u_6 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
+//                                                            cAdapter.addItem(u_6);
+//                                                            cAdapter.notifyDataSetChanged();
+//                                                        }
+//                                                    });
+//                                                }
+//                                            }
+//                                        }
+//                                    }).start();
+//                                    break;
+//                                }
+//                            case "14":
+//                                if (t3[index].equalsIgnoreCase("null")) {
+//                                    Convenient_ListData u_7 = new Convenient_ListData(getResources().getDrawable(R.drawable.bank_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
+//                                    cAdapter.addItem(u_7);
+//                                    cAdapter.notifyDataSetChanged();
+//                                    break;
+//                                } else {
+//                                    new Thread(new Runnable() {
+//                                        int count = index;
+//                                        public Drawable Convenient_Img;
+//                                        Bitmap bitmapSample1;
+//
+//                                        public void run() {
+//                                            try {
+//                                                bitmapSample1 = getBitmap(t3[count]);
+//                                            } catch (Exception e) {
+//
+//                                            } finally {
+//                                                if (bitmapSample1 != null) {
+//                                                    runOnUiThread(new Runnable() {
+//                                                        @SuppressLint("NewApi")
+//                                                        public void run() {
+//                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
+//                                                            Convenient_ListData u_7 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
+//                                                            cAdapter.addItem(u_7);
+//                                                            cAdapter.notifyDataSetChanged();
+//                                                        }
+//                                                    });
+//                                                }
+//                                            }
+//                                        }
+//                                    }).start();
+//                                    break;
+//                                }
+//                            case "15":
+//                                if (t3[index].equalsIgnoreCase("null")) {
+//                                    Convenient_ListData u_8 = new Convenient_ListData(getResources().getDrawable(R.drawable.susun_thumbnails), t1[index], t2[index], getResources().getDrawable(R.drawable.call_button), t[index], t4[index], t5[index]);
+//                                    cAdapter.addItem(u_8);
+//                                    cAdapter.notifyDataSetChanged();
+//                                    break;
+//                                } else {
+//                                    new Thread(new Runnable() {
+//                                        int count = index;
+//                                        public Drawable Convenient_Img;
+//                                        Bitmap bitmapSample1;
+//
+//                                        public void run() {
+//                                            try {
+//                                                bitmapSample1 = getBitmap(t3[count]);
+//                                            } catch (Exception e) {
+//
+//                                            } finally {
+//                                                if (bitmapSample1 != null) {
+//                                                    runOnUiThread(new Runnable() {
+//                                                        @SuppressLint("NewApi")
+//                                                        public void run() {
+//                                                            Convenient_Img = new BitmapDrawable(getResources(), bitmapSample1);
+//                                                            Convenient_ListData u_8 = new Convenient_ListData(Convenient_Img, t1[count], t2[count], getResources().getDrawable(R.drawable.call_button), t[count], t4[count], t5[count]);
+//                                                            cAdapter.addItem(u_8);
+//                                                            cAdapter.notifyDataSetChanged();
+//                                                        }
+//                                                    });
+//                                                }
+//                                            }
+//                                        }
+//                                    }).start();
+//                                    break;
+//                                }
+//                            default:
+//                                break;
+//                        }
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+//                Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     public Bitmap getBitmap(String url) {
@@ -469,7 +619,7 @@ public class Convenient_Store_Main extends ActionBarActivity {
         }
     }
 
-    public void SearchFunction(String message){
+    public void SearchFunction(String message) {
 
         RequestParams params = new RequestParams();
         params.put("name", message);
@@ -519,17 +669,16 @@ public class Convenient_Store_Main extends ActionBarActivity {
                         arrpos.add(t6);
                     }
 
-                    if (arrid.size() == 0){
+                    if (arrid.size() == 0) {
                         Toast.makeText(getApplicationContext(), "검색결과가 존재하지 않습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
+                    } else {
                         intent.putStringArrayListExtra("id", arrid);
                         intent.putStringArrayListExtra("name", arrname);
                         intent.putStringArrayListExtra("pnum", arrpnum);
                         intent.putStringArrayListExtra("lau", arrlau);
-                        intent.putStringArrayListExtra("detail" , arrdetail);
-                        intent.putStringArrayListExtra("img" , arrimg);
-                        intent.putStringArrayListExtra("category_id" , arrpos);
+                        intent.putStringArrayListExtra("detail", arrdetail);
+                        intent.putStringArrayListExtra("img", arrimg);
+                        intent.putStringArrayListExtra("category_id", arrpos);
                         startActivity(intent);
                     }
 
@@ -554,7 +703,6 @@ public class Convenient_Store_Main extends ActionBarActivity {
 
         MenuItem SearchItem = menu.findItem(R.id.action_search);
         SearchView searchview = (SearchView) MenuItemCompat.getActionView(SearchItem);
-
 
 
         searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -584,9 +732,7 @@ public class Convenient_Store_Main extends ActionBarActivity {
         if (id == android.R.id.home) {
             finish();
             return true;
-        }
-
-        else if(id == R.id.action_inquire){
+        } else if (id == R.id.action_inquire) {
             Intent intent = new Intent(getApplicationContext(), Inquire_Main.class);
             startActivity(intent);
         }
@@ -610,7 +756,7 @@ public class Convenient_Store_Main extends ActionBarActivity {
             intent.putExtra("url", url);
             intent.putExtra("name", name);
             startActivity(intent);
-            overridePendingTransition(0,0);
+            overridePendingTransition(0, 0);
         }
 
     }

@@ -8,15 +8,15 @@ import android.graphics.drawable.Drawable;
 public class Convenient_ListData {
     private Drawable cStoreIcon;
     private Drawable cStoreCallIcon;
-    private String cStoreText;
+    private String cStoreName;
     private String cStoreDetail;
     private String cStoreId;
     private String cStoreUrl;
     private String cStorePnumber;
 
-    public Convenient_ListData(Drawable Icon, String Text, String Detail, Drawable Call , String id, String url , String Pnumber){
+    public Convenient_ListData(Drawable Icon, String Name, String Detail, Drawable Call , String id, String url , String Pnumber){
         cStoreIcon = Icon;
-        cStoreText = Text;
+        cStoreName = Name;
         cStoreDetail = Detail;
         cStoreCallIcon = Call;
         cStoreId = id;
@@ -24,7 +24,7 @@ public class Convenient_ListData {
         cStorePnumber = Pnumber;
     }
     public Drawable getcStoreIcon(){return cStoreIcon;}
-    public String getcStoreText(){return cStoreText;}
+    public String getcStoreName(){return cStoreName;}
     public String getcStoreDetail(){return cStoreDetail;}
     public Drawable getcStoreCallIcon() {return cStoreCallIcon;}
     public String getcStoreId(){return cStoreId;}

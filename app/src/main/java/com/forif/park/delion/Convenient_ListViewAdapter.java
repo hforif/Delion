@@ -70,7 +70,7 @@ public class Convenient_ListViewAdapter extends BaseAdapter {
             holder.cDetail.setText(cListCheck.getcStoreDetail());
         }
         holder.cIcon.setImageDrawable(cListCheck.getcStoreIcon());
-        holder.cText.setText(cListCheck.getcStoreText());
+        holder.cText.setText(cListCheck.getcStoreName());
         holder.cDetail.setText(cListCheck.getcStoreDetail());
         holder.cCalling.setImageResource(R.drawable.call_button);
         holder.cId.setText(cListCheck.getcStoreId());

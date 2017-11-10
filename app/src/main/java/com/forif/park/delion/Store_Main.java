@@ -56,7 +56,6 @@ public class Store_Main extends ActionBarActivity {
     private DelionInterface interfaces;
     private Retrofit retrofit;
     public static List<Store_JSONData> storeJSONList;
-    public static List<Convenient_JSONData> convJSONList;
     String[] tempId, tempName, tempDetail, tempImagePath, tempPnum, tempState;
 //    @Override
 //    protected void onResume(){
