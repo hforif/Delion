@@ -10,7 +10,7 @@ android {
 //        }
 //    }
     compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "com.forif.park.delion"
         minSdkVersion 15
@@ -33,6 +33,8 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.google.android.gms:play-services:7.8.0'
     compile 'com.android.support:appcompat-v7:23.1.0'
     compile 'com.loopj.android:android-async-http:1.4.8'
