@@ -10,7 +10,6 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,7 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.graphics.Bitmap;
 
-import com.google.android.gms.common.server.converter.StringToIntConverter;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -53,7 +51,7 @@ public class Store_Main extends ActionBarActivity {
     String[] t, t1, t2, t3, t4, t5;
     int index;
 
-    private DelionInterface interfaces;
+    private Store_Interface interfaces;
     private Retrofit retrofit;
     public static List<Store_JSONData> storeJSONList;
     String[] tempId, tempName, tempDetail, tempImagePath, tempPnum, tempState;
@@ -108,10 +106,10 @@ public class Store_Main extends ActionBarActivity {
         }
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(DelionInterface.ServerUrl)
+                .baseUrl(Store_Interface.ServerUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        interfaces = retrofit.create(DelionInterface.class);
+        interfaces = retrofit.create(Store_Interface.class);
 
 
         Call<List<Store_JSONData>> callStoreList = interfaces.getShopList(Integer.parseInt(typeOfStore));
