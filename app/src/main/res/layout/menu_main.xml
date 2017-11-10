@@ -64,7 +64,7 @@
                 android:layout_height="65dp">
 
                 <TextView
-                    android:id="@+id/text_text1"
+                    android:id="@+id/text_opentime"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="50"
@@ -73,7 +73,7 @@
                     android:textSize="10sp" />
 
                 <TextView
-                    android:id="@+id/text_text2"
+                    android:id="@+id/text_phone_num"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="50"
