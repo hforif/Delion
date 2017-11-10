@@ -63,8 +63,8 @@ public class Menu_Main extends AppCompatActivity {
 
         //Circle 속 string
         final TextView tv1, tv2, tv3, pnumber;
-        tv1 = (TextView) findViewById(R.id.text_text1);
-        tv2 = (TextView) findViewById(R.id.text_text2);
+        tv1 = (TextView) findViewById(R.id.text_opentime);
+        tv2 = (TextView) findViewById(R.id.text_phone_num);
 
 //        tv3 = (TextView)findViewById(R.id.text3);
         pnumber = (TextView) findViewById(R.id.menu_pnumber);
