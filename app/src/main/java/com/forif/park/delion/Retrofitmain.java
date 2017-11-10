@@ -1,4 +1,4 @@
-package com.example.ryan.retrofittest;
+package com.forif.park.delion;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,7 +22,7 @@ public class Retrofitmain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.retrofitmain);
+//        setContentView(R.layout.retrofitmain);
 
 
         retrofit = new Retrofit.Builder()
@@ -56,7 +56,7 @@ public class Retrofitmain extends AppCompatActivity {
                 }
 
                 for (int index=0;index<storeJSONList.size();index++){
-                    Store_ListData Data_1=new Store_ListData(getResources().getDrawable(R.drawable.))
+//                    Store_ListData Data_1=new Store_ListData(getResources().getDrawable(R.drawable.))
                 }
 
 
