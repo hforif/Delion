@@ -20,6 +20,4 @@ public interface Convenient_Interface {
     Call<List<Convenient_Detail_JSONData>> getConvDetail(@Path("id") int storeId);
 
 
-
-
 }
