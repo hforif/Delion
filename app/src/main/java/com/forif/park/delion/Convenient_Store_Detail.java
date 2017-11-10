@@ -49,7 +49,6 @@ public class Convenient_Store_Detail extends ActionBarActivity implements OnMapR
 //    Button button3;
 //    Button button4;
 
-    ServerUrl Value = new ServerUrl();
     String urlm;
     String name;
     int a, b, c;
@@ -58,11 +57,9 @@ public class Convenient_Store_Detail extends ActionBarActivity implements OnMapR
     String xx;
     String yy;
 
-    int index;
     private Convenient_Interface interfaces;
     private Retrofit retrofit;
     public static List<Convenient_Detail_JSONData> convDetailJSON;
-    String[] tempID, tempName, tempOpenTime, tempPNum, tempAdd, tempState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,8 +99,11 @@ public class Convenient_Store_Detail extends ActionBarActivity implements OnMapR
                 fTextViewOpenTime.setText(convDetailJSON.get(0).getmConvOpenTime());
                 fTextViewPNum.setText(convDetailJSON.get(0).getmConvPNum());
                 fTextViewAdd.setText(convDetailJSON.get(0).getmConvAdd());
-
-                getSupportActionBar().setTitle(convDetailJSON.get(0).getmConvName());
+                String temp=convDetailJSON.get(0).getmConvName();
+                if (!(convDetailJSON.get(0).getmConvDetail().equals("null\r"))) {
+                    temp=temp+" "+convDetailJSON.get(0).getmConvDetail();
+                }
+                getSupportActionBar().setTitle(temp);
             }
 
             @Override
@@ -118,8 +118,7 @@ public class Convenient_Store_Detail extends ActionBarActivity implements OnMapR
 
         ImageView ConPhoneCall = (ImageView) findViewById(R.id.button_ConDial);
 
-        ConPhoneCall.setOnClickListener(new View.OnClickListener()
-        {
+        ConPhoneCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String ConPnumber = fTextViewPNum.getText().toString();
@@ -130,8 +129,8 @@ public class Convenient_Store_Detail extends ActionBarActivity implements OnMapR
             }
         });
 
-        urlm =getIntent().getStringExtra("url");
-        name =getIntent().getStringExtra("name");
+        urlm = getIntent().getStringExtra("url");
+        name = getIntent().getStringExtra("name");
 
         a = urlm.indexOf("x=");
         b = urlm.indexOf("&y=");
