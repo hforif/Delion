@@ -11,7 +11,6 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.telecom.Call;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,7 +21,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -39,6 +37,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -63,7 +62,7 @@ public class Convenient_Store_Main extends ActionBarActivity {
 
     //---------
 
-    private DelionInterface interfaces;
+    private Convenient_Interface interfaces;
     private Retrofit retrofit;
     public static List<Convenient_JSONData> convJSONList;
     String[] tempId, tempName, tempImagePath, tempDetail, tempAddUrl, tempPnum, tempState;
@@ -128,16 +127,16 @@ public class Convenient_Store_Main extends ActionBarActivity {
         }
 
         retrofit = new Retrofit.Builder()
-                .baseUrl(DelionInterface.ServerUrl)
+                .baseUrl(Store_Interface.ServerUrl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        interfaces = retrofit.create(DelionInterface.class);
+        interfaces = retrofit.create(Convenient_Interface.class);
 
-        retrofit2.Call<List<Convenient_JSONData>> callConvStoreList = interfaces.getConvList(Integer.parseInt(typeOfConvStore));
+        Call<List<Convenient_JSONData>> callConvStoreList = interfaces.getConvList(Integer.parseInt(typeOfConvStore));
 
         callConvStoreList.enqueue(new Callback<List<Convenient_JSONData>>() {
             @Override
-            public void onResponse(retrofit2.Call<List<Convenient_JSONData>> call, Response<List<Convenient_JSONData>> response) {
+            public void onResponse(Call<List<Convenient_JSONData>> call, Response<List<Convenient_JSONData>> response) {
                 convJSONList = response.body();
                 tempId = new String[convJSONList.size()];
                 tempName = new String[convJSONList.size()];
