@@ -1,4 +1,4 @@
-package com.example.ryan.retrofittest;
+package com.forif.park.delion;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
